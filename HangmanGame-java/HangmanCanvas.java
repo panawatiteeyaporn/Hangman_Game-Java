@@ -1,30 +1,30 @@
 /*
  * File: HangmanCanvas.java
  * ------------------------
+ * Name: Panawat Iteeyaporn
  * This file keeps track of the Hangman display.
  */
 
 import acm.graphics.*;
 
 import java.awt.Color;
-import java.awt.color.*;
-import acm.util.ErrorException;
 
 public class HangmanCanvas extends GCanvas {
 
-	/** Resets the display so that only the scaffold appears */
+	/* Resets the display so that only the scaffold appears */
 	public void reset() {
 
 		removeAll();
 		addRope();
 		addBeam();
 		addScaffold();
-		
+
 		wrongLetters = "";
 		guessCount = 0;
 
 	}
 
+	/* Add rope to the canvas. */
 	private void addRope() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS;
@@ -36,6 +36,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add beam to the canvas. */
 	private void addBeam() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS;
@@ -48,6 +49,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add scaffold to the canvas. */
 	private void addScaffold() {
 
 		double x = (((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS)
@@ -61,7 +63,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
-	/**
+	/*
 	 * Updates the word on the screen to correspond to the current state of the
 	 * game. The argument string shows what letters have been guessed so far;
 	 * unguessed letters are indicated by hyphens.
@@ -78,25 +80,26 @@ public class HangmanCanvas extends GCanvas {
 		add(wordShow, x, y);
 
 	}
-	/**
-	 * Shows the correct word at the bottom of the canvas screen when 
-	 * the player lost the game. 
+
+	/*
+	 * Shows the correct word at the bottom of the canvas screen when the player
+	 * lost the game.
 	 */
 	public void displayAnswer(String answer) {
-		
+
 		GLabel a = new GLabel("The word is: " + answer);
 		a.setFont("Times New Roman-20");
 		a.setColor(Color.red);
-		
+
 		double x = (getWidth() - wordShow.getWidth()) / DISPLAY_X_OFFSET;
-		double y = (getHeight() - wordShow.getHeight()) - DISPLAY_Y_OFFSET 
+		double y = (getHeight() - wordShow.getHeight()) - DISPLAY_Y_OFFSET
 				+ (guessedLetters.getHeight() * 2) + 30;
-		
+
 		add(a, x, y);
-		
+
 	}
 
-	/**
+	/*
 	 * Updates the display to correspond to an incorrect guess by the user.
 	 * Calling this method causes the next body part to appear on the scaffold
 	 * and adds the letter to the list of incorrect guesses that appears at the
@@ -129,6 +132,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add past guesses on the canvas as a GLabel object. */
 	private void addPastGuesses() {
 
 		remove(guessedLetters);
@@ -143,6 +147,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add head to the canvas. */
 	private void head() {
 
 		GOval head = new GOval(HEAD_RADIUS * 2, HEAD_RADIUS * 2);
@@ -153,6 +158,7 @@ public class HangmanCanvas extends GCanvas {
 		add(head, x, y);
 	}
 
+	/* Add body to the canvas. */
 	private void body() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS;
@@ -164,6 +170,7 @@ public class HangmanCanvas extends GCanvas {
 		add(body);
 	}
 
+	/* Add left arm to the canvas. */
 	private void leftArm() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS;
@@ -180,6 +187,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add right arm to the canvas. */
 	private void rightArm() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS;
@@ -196,6 +204,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add left leg to the canvas. */
 	private void leftLeg() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS;
@@ -210,6 +219,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add right leg to the canvas. */
 	private void rightLeg() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS;
@@ -223,6 +233,7 @@ public class HangmanCanvas extends GCanvas {
 		add(leg);
 	}
 
+	/* Add left foot to the canvas. */
 	private void leftFoot() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS
@@ -236,6 +247,7 @@ public class HangmanCanvas extends GCanvas {
 
 	}
 
+	/* Add right foot to the canvas. */
 	private void rightFoot() {
 
 		double x = ((getWidth() - (HEAD_RADIUS * 2)) / 2) + HEAD_RADIUS

@@ -1,22 +1,19 @@
 /*
  * File: Hangman.java
  * ------------------
- * This program will eventually play the Hangman game from
- * Assignment #4.
+ * Name: Panawat Iteeyaporn
+ * This program create the Hangman game for user to play. 
  */
 
-import acm.graphics.*;
 import acm.program.*;
 import acm.util.*;
-
-import java.awt.*;
 
 public class Hangman extends ConsoleProgram {
 
 	private static final int MaxGuessTurn = 8;
 
 	public void run() {
-		
+
 		wordGuessSoFar = "";
 		turn = 0;
 		isGameWon = false;
@@ -26,7 +23,8 @@ public class Hangman extends ConsoleProgram {
 		 * method using random generator to get the word for the game.
 		 */
 		HangmanLexicon getNewWord = new HangmanLexicon();
-		String word = getNewWord.getWord(rgen.nextInt(0, getNewWord.getWordCount()));
+		String word = getNewWord.getWord(rgen.nextInt(0,
+				getNewWord.getWordCount()));
 
 		println("Welcome to Hangman!");
 		canvas.reset();
@@ -46,15 +44,19 @@ public class Hangman extends ConsoleProgram {
 		gameRestart();
 
 	}
-	
+
+	/*
+	 * Prompt message to ask if the user want to play another game after the
+	 * game finished.
+	 */
 	private void gameRestart() {
-		
+
 		println("Would you like to play again?");
 		String play = readLine("Enter y or n: ");
 		play = play.toUpperCase();
-		if (play.charAt(0) == 'Y'){
+		if (play.charAt(0) == 'Y') {
 			run();
-		} else if (play.charAt(0) == 'N'){
+		} else if (play.charAt(0) == 'N') {
 			println("Thank you for playing!");
 		} else {
 			println("Option unrecognised, please re-enter.");
@@ -62,6 +64,7 @@ public class Hangman extends ConsoleProgram {
 		}
 	}
 
+	/* init method set applet size and canvas for the game. */
 	public void init() {
 		setSize(800, 600);
 		canvas = new HangmanCanvas();
@@ -82,11 +85,11 @@ public class Hangman extends ConsoleProgram {
 	private String lastMessage(String answer) {
 
 		if (isGameWon == true) {
-		return	"You Win!";
-		
+			return "You Win!";
+
 		} else {
 			canvas.displayAnswer(answer);
-		return	"You are completely hung! \n" + "You lose.";
+			return "You are completely hung! \n" + "You lose.";
 		}
 	}
 
@@ -178,7 +181,7 @@ public class Hangman extends ConsoleProgram {
 
 	/* Randomly generated instance variables. */
 	private RandomGenerator rgen = RandomGenerator.getInstance();
-	
+
 	private String wordGuessSoFar;
 	private char guessLetter;
 	private int turn;
